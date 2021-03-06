@@ -7,10 +7,8 @@ from django.conf.urls.static import static
 urlpatterns = [
  
 
-    path('/', views.blog, name ='blog'),
-
-
-   
-        
+    path('blog', views.blog, name ='blog'),
+    path('blog/Categorias/<int:categoria_id>/', views.categoria, name ='categoria'),
+       
 ]
 
