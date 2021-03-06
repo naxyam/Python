@@ -1,0 +1,82 @@
+
+
+contraseña: natsys123
+puerto 5432
+
+Una vez instalada la base de datos de postgre, creamos una base de datos nuestra, esto lo hacemos con el query tool, digitando la siguiente sentencia SQL:
+
+CREATE DATABASE NOMBRE
+
+y le damos al boton ejecutar en la parte superior
+
+y luego instalamos el  psycopg2
+
+Esto lo hacemos desde el cmd, ingresando al proyecto, y una vez allì digitamos:
+
+pip install psycopg2
+
+luego cambiamos los valores en el archivo settings del proyecto, donde dice database:
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'articulosclientes',
+        'USER': 'postgres',
+        'PASSWORD': 'natsys123',
+        'HOST': 'localhost',
+        'DATABASE_PORT': '5432'
+
+
+luego hacemos las migraciones:
+
+desde el cmd digitamos:
+
+python manage.py makemigrations
+
+y luego hacer la migración
+
+python manage.py migrate
+
+luego ingresamos al shell desde el cmd:
+
+python manage.py shell
+
+luego importamos la tabla con la que vamos a trabajar
+
+from gestionnPedidos.models import Articulos
+
+y luego si solicitamos la consulta, digitando:
+
+Articulos.objects.filter(seccion='deportes')
+
+Esto devuelve una tupla donde solo es legible el id de los artículos.
+
+Para que la información sea legible debemos usar una funcion para indicarle a python que transforme los modelos de las tablas a texto, esa función es __str__()
+
+
+**CONSULTAS TIPO SELECT CON CRITERIOS WHERE
+
+Igual al anterior,
+
+Articulos.objects.filter(nombre = 'mesa', seccion='hogar').
+
+No podemos usar > o < porque django lo usa para otras cosas.
+
+Lo debemos hacer de esta forma:
+
+Articulos.oobjects.filter(seccin='deportes', precio__gte=100) esto equivale a >(mayor que)
+
+
+Articulos.objects.filter(seccin='deportes', precio__lte=100
+esto equivale a < (menor que).
+
+
+como hacer order by precio por ejemplo
+
+Articulos.objects.filter(precio__gte=50).order_by('precio') equivale a select * where  precio>50 order by precio
+
+
+
+
+
+

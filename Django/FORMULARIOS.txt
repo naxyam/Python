@@ -1,0 +1,101 @@
+**TRABAJO DE FORMULARIOS
+
+
+OBJETOS HttpRequest
+
+Leer la documentación oficial buscando request object django
+
+
+CREACION DE FORMULARIO Y ENVIO DE DATOS AL SERVIDOR
+
+En primer lugar creamos un archivo .html nuevo  y creo el formulario con un input llamado prd y un input tipo boton, luego me voy a las vistas archivo views.py donde debo crear una funcion:
+
+def busqueda_productos(request):
+	return render(request,'busqueda_productos.html')
+
+
+luego debemos registrar una url o path, asi que nos vamos al archivo urls.py
+
+Allí nos vamos a URLPATTERNS y creamos otro path que se va a llamar path('busqueda_productos', views.busqueda_productos,)
+y muy importante importamos  las vistas
+
+from django.gestionnPedidos import views
+
+Luego creamos una busqueda que nos diga si la información que hemos introducido en el formulario llega al servidor o no llega. Lo creamos de esta forma
+
+def buscar(request):
+	mensaje='Artículo buscado: %r' %request.GET["prd"]
+
+	return HttpResponse(mensaje)
+
+y para poder usar el objeto http response debbemos importarlo de la siguiennte manera:
+
+from django.http import HttpResponse
+
+Ahora agregamos la vista en el archivo url.py
+
+en urlpatterns agregamos
+
+path('buscar/', views.buscar),
+
+
+LIMITAR LAS BUSQUEDAS EN UN FORMULARIO
+
+
+Nos vamos a las vistas view.py y verificamos si el contenido del input text que ha introducido el usuario es mayor a 20 entonces que de un error.
+
+if len(producto)>20:
+		mensaje='Texto de búsqueda demasiado largo'
+
+else:
+		articulos=Articulo.objects.filter(nombre__icontains=producto)
+		return render(request, 'resultados_busqueda.html',{'articulos':articulos, 		'query':producto})
+
+
+
+
+ENVIAR CORREOS DESDE DJANGO
+
+Debemos importar las siguientes librerias en el archivo views.py
+
+django.core.mail import send_mail
+from django.conf import settings
+
+en el archivo settings.py introducimos la configuración del correo que usaremos y los parametros para activar el correo en el backend de la siguiente forma:
+
+
+send_mail(
+    'Subject here',
+    'Here is the message.',
+    'from@example.com',
+    ['to@example.com'],
+    fail_silently=False,
+)
+
+
+Despues nos vamos a la vista y allí creamos la interelación del formulario de contacto.
+
+
+
+
+CREAR FORMULARIOS CON API FORMS
+
+Para crear formularios con api forms lo primero quue debemos hacer es crear un archivo forms.py que debe quedar en lamisma carpeta donde esta views.py, una vez creado importamos la libreria correspondiente asi:
+
+from django import forms
+
+Y luego creamos una clase que hereda de la superclase forms.Form y creamos los campos que va a tener la tabla dentro de esa clase indicandole el tipo de dato asi:
+
+class FormularioContacto(forms.Form):
+	asunto=forms.CharField()
+	email=forms.EmailField()
+	mensaje=forms.CharField()
+
+Con la propiedad cleaned data podemos recuperar la información de un formulario.
+
+miFormulario.cleaned_data
+
+
+Luego nos vamos al archivo views, importar la clase que creamos en el archivo forms.py
+
+from gestionPedidos.forms import FormularioContacto

@@ -1,0 +1,38 @@
+Primero debemos crear la interfaz para cargar la imagen, creamos el modelo y el campo para cargar la imagen debe ser de tipo model.ImageField()
+
+Una vez que entramos por el panel de administración y tratamos de ver la imagen, no podemos porque Django por defecto no es capaz de mostrar imagenes, o archivos multimedia, se lo debemos decir y ademas que lo debe hacer en modo de desarrollo, sabemos que esta en modo desarrollo porque en settings la opcion DEBUG = True lo especifica, una vez el proyecto está en un servidor real esta opcion debe estar en False y es el servidor de desarrollo el que se encarga de administrar los archivos multimedia.
+
+Otra cosa es que las imágenes por deffecto se guardan en la raiz del proyecto, asi que debemos organizar los archivos.
+
+Debemos crear una carpeta 'media' en la raiz del proyecto.
+Ahora nos vamos al archivo settings y al final ponemmos:
+
+
+MEDIA_URL = '/media/'
+
+MEDIA_ROOT = BASE_DIR /'media'
+
+Ahora para crear las subcarpetas nos vamos al modelo en el campo models.ImageField(), dentro de los parentesis podemos indicarle en donde se van a subir las imágenes upload_to='servicios'.
+
+Ahora nos vamos a urls e importamos settings, para tener disponibles las variables que creamos en settings:
+
+from django.conf import settings
+
+Ahora usamos un funcion ayudante llamada static() que nos retorna una ruta URL para servir archivos en modo desarrollo:
+primero la importamos en urls
+
+from django.conf.urls.static import static
+
+Y luego agregamos al urlpatterns dinamicamente las url de todas las imágenes que se suban asi:
+
+Nos vamos debajo del cierre del corchete de las urlpatterns y escribimos:
+
+urlpatterns+= static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
+urlpatterns+=
+
+
+
+
+
+
+

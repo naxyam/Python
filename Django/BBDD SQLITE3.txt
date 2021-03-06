@@ -1,0 +1,119 @@
+La base de datos SQLITE3 ya viene incluida con Django, por lo cual es una base de datos muy facil de usar.
+
+En Django la base de datos se incluye en la clase Model que es donde estan todas las herramientas relacionada con los datos.
+
+Django no puede crear modelos si no has creado dentro de una app.
+
+Crear un proyecto que va a ser una tienda online
+
+con un app de Gestionar pedidos y que va a tener 3 tablas una de clientes, una de artículos y una de pedidos.
+
+vamos a crear un nuevo proyecto en django y crear un proyecto llamado tienda on line
+
+Nos vamos con el cdm hasta la ubicación de Django y escribimos:
+
+django-admin startproject Tienda Online
+
+**crear una aplicación gestión Pedidos
+
+vamos a la consola y digitamos nuevamente:
+
+primero nos desplazamos a TiendaOnline luego, digitamos python manage.py startapp gestionPedidos
+
+Con el comando starapp nos ha creado una nueva carpeta gestionPedidos dentro de TiendaOnline
+
+Empezamos abriendo el archivo models de gestionPedidos, debemos crear una clase por cada tabla de la base de datos, ya que django le da un manejo orientado a objetos a la base de datos.
+
+asi:
+class Articulos(models.Model):
+	nombre = models.Charfield(max_length = 30)
+	seccion = models.Charfield(nax_length = 20)
+	precio = models.IntegerField()
+
+Luego de crear las tablas con los tipos de datos nos vamos al archivo settings para registrar la aplicacion, eso se hace en la parte INSTALLED_APPS, a continuación de la última aplicación registrada.
+
+Para revisar si todo está bien podemos introducir en consola el nombre de la aplicacion:
+
+python manage.py check gestionPedidos
+ 
+
+Para crear la base de datos como tal, ejecutamos el siguiente comando en el cmd:
+
+python manage.py makemigrations
+
+Para decirle a django que meta las tablas que ya hemos creado denntro de la base de datos, lo hacemos de la siguiente manera:
+
+Primero le decimos a Django que genere el codigo sql para la creacion de las tablas
+
+python manage.py sqlmigrate gestionPedidos 0001
+
+y luego python manage.py migrate
+
+
+**INSERTAR REGISTROS
+
+Para insertar registros dentro de las tablas ya creadas, lo hacemos de la siguiennte manera:
+
+Primero debemos abrir el shell, para hacerlo en el cmd nos paramos en el proyecto y una vez allì digitamos:
+
+python manage.py shell 
+
+Y se nos abrirá el shell
+
+Una vez allì abrimmos la tabla que queramos en nuesttro caso la tabla Articulos para lo cual digitamos:
+
+from gestionnPedidos.models import Articulos
+
+la primera parte es el nnombre de la app con la cual esttamos trabajando, de esta forma ya abrimos la tabla, y procedemos a insertar los registros con la siguiente sentencia:
+
+art(creamos una variabble) = Articulos(nombre = 'mesa', seccion ='decoración', precio = 90)
+
+Debbemos tener muy en cuenta los tipos de datos para la información que se ingrese y los campos que se pidenn.
+
+Y para que guarde le damos
+
+art.save()
+
+Si vamos a insertar ottro registro creamos otra variable y así sucesivamente...
+
+Hay otra forma de la siguiennte manera:
+
+art3 = Articulos.objects.create(nombre = 'taladro', seccion='ferretería', precio = 65)
+
+
+**MODIFICAR REGISTROS
+
+Para modificar registros debemos identificar la variable que creamos con la sentencia de creación por ejemplo vamos a cambiar el precio de la mesa de 90 a 95, digitamos la siguiente sentencia:
+
+art.precio = 95
+
+
+**BORRAR REGISTROS
+
+Necesitamos borar la camisa, lo hacemos de la siguiente manera:
+Primero guardamos el registro en una variable
+
+art5=Articulos.objects.get(id=3)
+
+y luego la borramos
+
+art5.delete()
+
+**COMO HACER CONSULTAS
+
+
+Podemos crear una variable
+
+Lista = Articulos.objects.all()
+
+Si queremos la instruccion select que ha generado la lista sería con:
+
+Lista.query.__str__()
+
+
+
+
+
+
+
+
