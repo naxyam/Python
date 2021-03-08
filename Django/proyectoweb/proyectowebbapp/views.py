@@ -21,8 +21,3 @@ def blog(request):
 
 	return render(request,'proyectowebbapp/blog.html')
 
-
-def contacto(request):
-
-
-	return render(request,'proyectowebbapp/contacto.html')

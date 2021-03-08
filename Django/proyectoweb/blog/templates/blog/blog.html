@@ -42,7 +42,7 @@ BLOG
 
 				{%for categoria in post.Categorias.all%}
 
-					{{categoria.nombre}}
+					<a class="linksCategorias" href="{% url 'categoria' categoria.id %}">{{categoria.nombre}}</a>
 
 				{% endfor %}
 

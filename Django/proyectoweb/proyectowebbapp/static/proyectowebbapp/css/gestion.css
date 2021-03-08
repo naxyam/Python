@@ -256,14 +256,7 @@ p {
   padding-top: 1.25rem;
 }
 
-a.link{
-  color: rgba(255, 255, 255, 0.7);
-}
 
-a.link:hover{
-  text-decoration: none;
-  color: rgba(255, 255, 255, 0.4);
-}
 
 .section-content{
   font-family: 'Lora' !important;
@@ -276,4 +269,14 @@ ul.errorlist{
   padding-top: .75rem;
   font-style: italic;
   color: red;
+}
+
+.linksCategorias{
+  color: white !important;
+  text-decoration: underline !important;
+}
+
+.linksCategorias:hover{
+
+  text-decoration: none !important;
 }
