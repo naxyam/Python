@@ -31,7 +31,7 @@ from proyectowebapp import views
 
 copiamos el urlpatters y lo quitamos del archivo urls general y en el urlpatterns de la aplicación quitamos la url de admin.
 
-Ahora enlazamos desde el url del proyecto al urls de la app
+Ahora enlazamos desde el url del proyecto al urls de la app,
 en urlpatters creamos un nuevo path
 
 path('proyectowebapp', include('proyectowebapp.urls')),

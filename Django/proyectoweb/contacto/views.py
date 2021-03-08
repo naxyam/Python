@@ -4,4 +4,4 @@ from django.shortcuts import render
 def contacto(request):
 
 
-	return render(request,'proyectowebbapp/contacto.html')
+	return render(request,'contacto/contacto.html')

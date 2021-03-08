@@ -22,6 +22,7 @@ urlpatterns = [
     path('', include('proyectowebbapp.urls')),
     path('', include('servicios.urls')),
     path('', include('blog.urls')),
+    path('contacto', include('contacto.urls')),
     
 
      
