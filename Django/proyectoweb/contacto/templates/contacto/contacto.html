@@ -9,6 +9,14 @@ CONTACTO
 {% endblock%}
 
 {% block content %}
-<div style='color: white'>Estamos en contacto</div>
+<div class='contenedorFormulario'>
+	<form action="" method='POST' style='text-align:center';>
+		{%csrf_token%}
+		<table style='color: white; margin:20px auto';>{{miformulario.as_table}}</table>
+		<input type="submit" value='enviar' style='width: 150px'>
+	</form>
+</div>
+	
+
 
 {% endblock %}

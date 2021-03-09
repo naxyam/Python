@@ -280,3 +280,13 @@ ul.errorlist{
 
   text-decoration: none !important;
 }
+
+.contenedorFormulario{
+
+  background-color: rgba(24, 64, 8) !important;
+  width:50%;
+  margin:10px auto;
+  border-radius: 20px !important;
+  padding:1px 0px;
+
+}
