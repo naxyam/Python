@@ -40,7 +40,7 @@ path('proyectowebapp', include('proyectowebapp.urls')),
 
 Para no tener que poner el nombre del proyecto despues de localhost para que abra las páginas (el html), en el archivo urls del proyecto quitamos el nombre en el path y dejamos:
 
-path('', include('proyectowebapp.urrls')),
+path('', include('proyectowebapp.urls')),
 
 
 Ahora nos vamos al archivo settings y en las apps instaladas (INSTALLED_APPS) despues de la última línea escribimos el nombre dle proyecto entre comillas:
@@ -62,6 +62,6 @@ Luego organizamos los links de las imagenes, los css y los archivos js para que 
 
 {% static 'nombreproyecto/ruta' %}
 
-Una vez verificamos que todo funciona, procedemos a hacer la herenncia de plantillas.
+Una vez verificamos que todo funciona, procedemos a hacer la herencia de plantillas.
 
 
