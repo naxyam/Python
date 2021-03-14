@@ -56,13 +56,15 @@ else:
 
 ENVIAR CORREOS DESDE DJANGO
 
-Debemos importar las siguientes librerias en el archivo views.py
+Se puede hacer de 2 maneras de hacerlo, a traves de send_mail:
 
-django.core.mail import send_mail
+Se deben importar las siguientes librerias en el archivo views.py
+
+from django.core.mail import send_mail
 from django.conf import settings
 
-en el archivo settings.py introducimos la configuración del correo que usaremos y los parametros para activar el correo en el backend de la siguiente forma:
 
+Y con este modelo se debe enviar el mensaje:
 
 send_mail(
     'Subject here',
@@ -71,6 +73,41 @@ send_mail(
     ['to@example.com'],
     fail_silently=False,
 )
+
+
+O por EmailMessage:
+
+
+Debemos importar las siguientes librerias en el archivo views.py
+
+from django.core.mail import EmailMessage
+from django.conf import settings
+
+
+En el archivo settings.py introducimos la configuración del correo que usaremos y los parametros para activar el correo en el backend de la siguiente forma:
+
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend' 
+EMAIL_HOST='smtp.gmail.com'
+EMAIL_USE_TLS=True
+EMAIL_POST=587
+EMAIL_HOST_USER='natymendieta29@gmail.com'
+EMAIL_HOST_PASSWORD='YoTeletrabajo2017'
+
+y esta es la estructura del mensaje:
+
+
+email = EmailMessage(
+    'Hello',
+    'Body goes here',
+    'from@example.com',
+    ['to1@example.com', 'to2@example.com'],
+    ['bcc@example.com'],
+    reply_to=['another@example.com'],
+    headers={'Message-ID': 'foo'},
+)
+
+
 
 
 Despues nos vamos a la vista y allí creamos la interelación del formulario de contacto.

@@ -16,6 +16,11 @@ CONTACTO
 				<p style='color:white;'>Información enviada correctamente, gracias</p>
 
 		{% endif %}
+		{% if 'novalido' in request.GET %}
+
+				<p style='color:white;'>Error en el envío de la información, inténtelo de nuevo</p>
+
+		{% endif %}
 
 		<form action="" method='POST' style='text-align:center';>
 			{%csrf_token%}
