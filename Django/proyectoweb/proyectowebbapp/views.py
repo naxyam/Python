@@ -8,16 +8,3 @@ def home(request):
 
 
 
-	
-
-def tienda(request):
-
-
-	return render(request,'proyectowebbapp/tienda.html')
-
-
-def blog(request):
-
-
-	return render(request,'proyectowebbapp/blog.html')
-
