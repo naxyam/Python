@@ -10,6 +10,26 @@ TIENDA
 
 
 {% block content %}
+	<div class="container">
+		
+		<div class="row">
+			
+			{% for producto in productos %}
+				<div class="col-md-3">
 
-<div style='color:white'><p>Estamos en la tienda</p></div>
+					<div class="card" >
+						<img src="{{producto.imagen.url}}" class='card-img-top w-100'>
+						<div class="card-body" style='text-align:center'>
+						    <h7 class="card-title">{{producto.nombre}}</h7>
+						    <p class="card-text">${{producto.precio}}</p>	   
+			
+						</div>
+
+					</div>
+				</div>
+			
+			{% endfor %}
+		</div>
+
+	</div>
 {% endblock %}
