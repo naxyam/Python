@@ -1,0 +1,11 @@
+	POSTGRESQL={
+
+    'default': {
+        'ENGINE': 		'django.db.backends.postgresql',
+        'NAME': 'DB',
+        'USER': 'postgres',
+        'PASSWORD': 'admin',
+        'HOST': 'localhost',
+        'DATABASE_PORT': '5433',
+}
+}

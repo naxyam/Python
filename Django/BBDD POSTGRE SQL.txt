@@ -19,12 +19,12 @@ luego cambiamos los valores en el archivo settings del proyecto, donde dice data
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'articulosclientes',
+        'ENGINE': 		'django.db.backends.postgresql',
+        'NAME': 'DB',
         'USER': 'postgres',
-        'PASSWORD': 'natsys123',
+        'PASSWORD': 'admin',
         'HOST': 'localhost',
-        'DATABASE_PORT': '5432'
+        'DATABASE_PORT': '5433'
 
 
 luego hacemos las migraciones:
